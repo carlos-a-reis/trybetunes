@@ -5,6 +5,7 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
+    <p>TrybeTunes</p>
     <App />
   </React.StrictMode>,
   document.getElementById('root'),
