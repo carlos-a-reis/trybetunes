@@ -4,33 +4,46 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import Loading from './Loading';
 import MusicCard from '../components/MusicCard';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor() {
     super();
 
     this.musics = this.musics.bind(this);
+    this.favoriteMusics = this.favoriteMusics.bind(this);
 
     this.state = ({
       album: [],
       loading: true,
+      favorites: [],
     });
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.favoriteMusics();
+  }
+
+  async favoriteMusics() {
+    const favorites = await getFavoriteSongs();
+
     const { match } = this.props;
     const musics = await getMusics(match.params.id);
     this.setState({
       album: musics,
       loading: false,
+      favorites,
     });
   }
 
   musics(album) {
+    const { favorites } = this.state;
+
     const musics = album.filter((song, index) => index !== 0);
     const showMusics = musics.map((music, index) => (
       <MusicCard
         songInfo={ music }
+        favorites={ favorites }
         trackName={ music.trackName }
         trackId={ music.trackId }
         previewUrl={ music.previewUrl }

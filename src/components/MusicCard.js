@@ -7,15 +7,33 @@ class MusicCard extends React.Component {
   constructor() {
     super();
 
-    this.favoriteList = this.favoriteList.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
+    this.checkFavorite = this.checkFavorite.bind(this);
 
     this.state = ({
       loading: false,
+      isFavorite: false,
     });
   }
 
-  async favoriteList({ target }) {
+  componentDidMount() {
+    this.checkFavorite();
+  }
+
+  checkFavorite() {
+    const { favorites, songInfo } = this.props;
+    const isFavoriteSong = favorites.some((song) => song.trackId === songInfo.trackId);
+    this.setState({
+      isFavorite: isFavoriteSong,
+    });
+  }
+
+  async addFavorite({ target }) {
     const { songInfo } = this.props;
+
+    this.setState((prevState) => ({
+      isFavorite: !prevState.isFavorite,
+    }));
 
     this.setState({
       loading: true,
@@ -32,7 +50,7 @@ class MusicCard extends React.Component {
 
   render() {
     const { trackName, trackId, previewUrl } = this.props;
-    const { loading } = this.state;
+    const { loading, isFavorite } = this.state;
 
     return (
       <div>
@@ -49,7 +67,8 @@ class MusicCard extends React.Component {
           <input
             type="checkbox"
             id="favorite-song"
-            onChange={ this.favoriteList }
+            checked={ isFavorite }
+            onChange={ this.addFavorite }
             data-testid={ `checkbox-music-${trackId}` }
           />
         </label>
@@ -64,6 +83,7 @@ MusicCard.propTypes = {
   trackName: propTypes.string.isRequired,
   previewUrl: propTypes.string.isRequired,
   trackId: propTypes.number.isRequired,
+  favorites: propTypes.arrayOf.isRequired,
 };
 
 export default MusicCard;
