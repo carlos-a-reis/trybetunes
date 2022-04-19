@@ -29,12 +29,16 @@ class Header extends React.Component {
     const { userName, loading } = this.state;
     return (
       <header data-testid="header-component">
-        { loading ? <Loading /> : <p data-testid="header-user-name">{ userName }</p> }
-        <nav>
-          <Link to="/search" data-testid="link-to-search">Pesquisa</Link>
-          <Link to="/favorites" data-testid="link-to-favorites">Favoritas</Link>
-          <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
-        </nav>
+        { loading ? <Loading /> : (
+          <div>
+            <p data-testid="header-user-name">{ userName }</p>
+            <nav>
+              <Link to="/search" data-testid="link-to-search">Pesquisa</Link>
+              <Link to="/favorites" data-testid="link-to-favorites">Favoritas</Link>
+              <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
+            </nav>
+          </div>
+        )}
       </header>
     );
   }
