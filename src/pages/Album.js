@@ -26,9 +26,10 @@ class Album extends React.Component {
 
   async favoriteMusics() {
     const favorites = await getFavoriteSongs();
-
     const { match } = this.props;
+
     const musics = await getMusics(match.params.id);
+
     this.setState({
       album: musics,
       loading: false,
