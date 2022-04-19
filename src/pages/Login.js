@@ -43,7 +43,9 @@ class Login extends React.Component {
     this.setState({
       loading: true,
     });
+
     await createUser({ name: userName });
+
     this.setState({
       loading: false,
       redirect: true,
@@ -60,7 +62,7 @@ class Login extends React.Component {
             UserName
             <input
               type="text"
-              name="usernName"
+              id="usernName"
               onChange={ this.inputName }
               value={ userName }
               data-testid="login-name-input"

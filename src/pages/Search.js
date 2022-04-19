@@ -85,7 +85,7 @@ class Search extends React.Component {
           <label htmlFor="search-input">
             <input
               type="text"
-              name="search-input"
+              id="search-input"
               onChange={ this.handleChange }
               value={ inputValue }
               data-testid="search-artist-input"

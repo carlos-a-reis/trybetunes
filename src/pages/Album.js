@@ -30,7 +30,9 @@ class Album extends React.Component {
     const musics = album.filter((song, index) => index !== 0);
     const showMusics = musics.map((music, index) => (
       <MusicCard
+        songInfo={ music }
         trackName={ music.trackName }
+        trackId={ music.trackId }
         previewUrl={ music.previewUrl }
         key={ index }
       />
@@ -58,7 +60,7 @@ class Album extends React.Component {
 }
 
 Album.propTypes = {
-  match: PropTypes.object.isRequired,
+  match: PropTypes.shape.isRequired,
 };
 
 export default Album;
