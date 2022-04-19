@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import { BrowserRouter, Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { BrowserRouter, Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
 
@@ -37,7 +36,8 @@ class Login extends React.Component {
     }
   }
 
-  async login() {
+  async login(event) {
+    event.preventDefault();
     const { userName } = this.state;
 
     this.setState({
@@ -67,7 +67,7 @@ class Login extends React.Component {
             />
           </label>
           <button
-            type="button"
+            type="submit"
             data-testid="login-submit-button"
             disabled={ enableButton }
             onClick={ this.login }
