@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
 
@@ -76,9 +76,7 @@ class Login extends React.Component {
           </button>
         </form>
         { loading && <Loading /> }
-        <BrowserRouter>
-          { redirect && <Redirect to="/search" /> }
-        </BrowserRouter>
+        { redirect && <Redirect to="/search" /> }
       </div>
     );
   }
