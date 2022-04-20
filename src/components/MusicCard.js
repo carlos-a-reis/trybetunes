@@ -7,7 +7,7 @@ class MusicCard extends React.Component {
   constructor() {
     super();
 
-    this.addFavorite = this.addFavorite.bind(this);
+    this.addAndRemoveFavorite = this.addAndRemoveFavorite.bind(this);
     this.checkFavorite = this.checkFavorite.bind(this);
 
     this.state = ({
@@ -28,26 +28,30 @@ class MusicCard extends React.Component {
     });
   }
 
-  async addFavorite({ target }) {
-    const { songInfo } = this.props;
+  async addAndRemoveFavorite({ target }) {
+    const { songInfo, removeFavorite } = this.props;
 
-    this.setState((prevState) => ({
-      isFavorite: !prevState.isFavorite,
-    }));
-
-    this.setState({
-      loading: true,
-    });
-
-    if (target.checked) {
-      await addSong(songInfo);
+    if (removeFavorite) {
+      removeFavorite(songInfo);
     } else {
-      await removeSong(songInfo);
-    }
+      this.setState((prevState) => ({
+        isFavorite: !prevState.isFavorite,
+      }));
 
-    this.setState({
-      loading: false,
-    });
+      this.setState({
+        loading: true,
+      });
+
+      if (target.checked) {
+        await addSong(songInfo);
+      } else {
+        await removeSong(songInfo);
+      }
+
+      this.setState({
+        loading: false,
+      });
+    }
   }
 
   render() {
@@ -68,9 +72,9 @@ class MusicCard extends React.Component {
           Favoritar
           <input
             type="checkbox"
-            id="favorite-song"
+            name="favorite-song"
             checked={ isFavorite }
-            onChange={ this.addFavorite }
+            onChange={ this.addAndRemoveFavorite }
             data-testid={ `checkbox-music-${trackId}` }
           />
         </label>
@@ -86,6 +90,7 @@ MusicCard.propTypes = {
   previewUrl: propTypes.string.isRequired,
   trackId: propTypes.number.isRequired,
   favorites: propTypes.arrayOf.isRequired,
+  removeFavorite: propTypes.func.isRequired,
 };
 
 export default MusicCard;
