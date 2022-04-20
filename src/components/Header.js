@@ -7,13 +7,19 @@ class Header extends React.Component {
   constructor() {
     super();
 
+    this.userRequest = this.userRequest.bind(this);
+
     this.state = ({
       userName: '',
       loading: false,
     });
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.userRequest();
+  }
+
+  async userRequest() {
     this.setState({
       loading: true,
     }, async () => {
