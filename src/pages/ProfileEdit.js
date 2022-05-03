@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import propTypes from 'prop-types';
 import Loading from './Loading';
 import Header from '../components/Header';
 import { getUser, updateUser } from '../services/userAPI';
@@ -22,7 +22,6 @@ class ProfileEdit extends React.Component {
       disableButton: true,
       loading: false,
       loadingSave: false,
-      redirect: false,
     });
   }
 
@@ -40,10 +39,7 @@ class ProfileEdit extends React.Component {
 
   async saveEdit() {
     const { userName, userEmail, userImage, userDescription } = this.state;
-
-    this.setState({
-      loadingSave: true,
-    });
+    const { history: { push } } = this.props;
 
     await updateUser({
       name: userName,
@@ -52,10 +48,7 @@ class ProfileEdit extends React.Component {
       description: userDescription,
     });
 
-    this.setState({
-      loadingSave: false,
-      redirect: true,
-    });
+    push('/profile');
   }
 
   async userRequest() {
@@ -122,7 +115,7 @@ class ProfileEdit extends React.Component {
             onClick={ this.saveEdit }
             data-testid="edit-button-save"
           >
-            Salvar
+            Editar perfil
           </button>
         </label>
       </form>
@@ -151,17 +144,21 @@ class ProfileEdit extends React.Component {
   }
 
   render() {
-    const { loading, loadingSave, redirect } = this.state;
+    const { loading, loadingSave } = this.state;
 
     return (
       <div data-testid="page-profile-edit">
         <Header />
         { loading ? <Loading /> : this.formEdit() }
         { loadingSave && <Loading /> }
-        { redirect && <Redirect to="/profile" /> }
       </div>
     );
   }
 }
+
+ProfileEdit.propTypes = {
+  history: propTypes.shape.isRequired,
+  push: propTypes.func.isRequired,
+};
 
 export default ProfileEdit;
