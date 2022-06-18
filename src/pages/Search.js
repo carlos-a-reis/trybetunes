@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from './Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import '../CSS/search.css';
 
 class Search extends React.Component {
   constructor() {
@@ -23,7 +24,7 @@ class Search extends React.Component {
   }
 
   handleChange({ target }) {
-    const minLength = 2;
+    const minLength = 1;
 
     this.setState({
       inputValue: target.value,
@@ -32,6 +33,10 @@ class Search extends React.Component {
     if (target.value.length >= minLength) {
       this.setState({
         buttonEnable: false,
+      });
+    } else {
+      this.setState({
+        buttonEnable: true,
       });
     }
   }
@@ -56,19 +61,20 @@ class Search extends React.Component {
 
   renderAlbums(albums) {
     if (albums.length === 0) {
-      return (<p>Nenhum álbum foi encontrado</p>);
+      return (<p className="not-found">Nenhum álbum foi encontrado</p>);
     }
 
     const renderedAlbums = albums.map((album, index) => (
       <Link
         to={ `/album/${album.collectionId}` }
         key={ index }
+        className="nav-link"
         data-testid={ `link-to-album-${album.collectionId}` }
       >
-        <div>
+        <div className="album">
           <img src={ album.artworkUrl100 } alt={ album.collectonName } />
-          <p>{ album.collectionName }</p>
-          <p>{ album.artistName }</p>
+          <p className="album-name">{ album.collectionName }</p>
+          <p className="artist-name">{ album.artistName }</p>
         </div>
       </Link>
     ));
@@ -79,33 +85,35 @@ class Search extends React.Component {
     const { inputValue, artist, buttonEnable, loading, foundAlbums, albums } = this.state;
 
     return (
-      <div data-testid="page-search">
+      <div className="search" data-testid="page-search">
         <Header />
-        <form>
-          <label htmlFor="search-input">
+        <form className="form-search">
+          <div className="input-group mb-3">
             <input
               type="text"
-              id="search-input"
               onChange={ this.handleChange }
               value={ inputValue }
+              className="search-input form-control"
+              placeholder="Nome do Artista"
               data-testid="search-artist-input"
             />
-          </label>
-          <button
-            type="submit"
-            disabled={ buttonEnable }
-            onClick={ this.searchMusics }
-            data-testid="search-artist-button"
-          >
-            Pesquisar
-          </button>
+            <button
+              type="submit"
+              disabled={ buttonEnable }
+              onClick={ this.searchMusics }
+              className="search-button btn btn-outline-secondary"
+              data-testid="search-artist-button"
+            >
+              Pesquisar
+            </button>
+          </div>
         </form>
         { loading && <Loading /> }
         { foundAlbums && (
-          <div>
-            <h1>
-              {`Resultado de álbuns de: ${artist}`}
-            </h1>
+          <div className="results">
+            <h4 className="result-titles">
+              {`Resultado de álbuns de ${artist}`}
+            </h4>
             { this.renderAlbums(albums) }
           </div>
         )}

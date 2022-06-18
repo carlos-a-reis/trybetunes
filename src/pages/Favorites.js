@@ -1,8 +1,9 @@
 import React from 'react';
 import Header from '../components/Header';
 import Loading from './Loading';
-import MusicCard from '../components/MusicCard';
+import MusicCardFavorite from '../components/MusicCardFavorite';
 import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import '../CSS/favorites.css';
 
 class Favorites extends React.Component {
   constructor() {
@@ -39,7 +40,7 @@ class Favorites extends React.Component {
     const { favorites } = this.state;
 
     const musics = favorites.map((music, index) => (
-      <MusicCard
+      <MusicCardFavorite
         songInfo={ music }
         favorites={ favorites }
         trackName={ music.trackName }
@@ -62,10 +63,11 @@ class Favorites extends React.Component {
     const { loading } = this.state;
 
     return (
-      <div data-testid="page-favorites">
+      <div className="favorites-page" data-testid="page-favorites">
         <Header />
         { loading ? <Loading /> : (
-          <div>
+          <div className="favorites">
+            <h2>Músicas Favoritas:</h2>
             { this.favoriteSongs() }
           </div>
         ) }

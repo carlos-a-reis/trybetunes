@@ -1,0 +1,158 @@
+.search{
+  height: 100vh;
+  background-color: #16161A;
+}
+
+.form-search {
+  height: 5%;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.input-group {
+  width: 100%;
+  justify-content: center;
+}
+
+.search-input {
+  height: 35px;
+  max-width: 400px;
+  margin-left: 25px;
+}
+
+.form-search .search-button {
+  margin-right: 25px;
+  height: 35px;
+  width: 100px;
+  padding: 0px;
+  background-color: #2A7C7D;
+  --bs-btn-hover-bg: #19494A;
+  --bs-btn-disabled-bg: #2A7C7D;
+  --bs-btn-disabled-border-color: #2A7C7D;
+  --bs-btn-border-color: #2A7C7D;
+  --bs-btn-hover-border-color: #19494A;
+  --bs-btn-bg: #2A7C7D;
+  --bs-btn-active-bg: #19494A;
+  --bs-btn-active-border-color: #2A7C7D;
+  --bs-btn-color: #fffffe;
+  --bs-btn-focus-shadow-rgb: #19494A;
+  --bs-btn-disabled-color: #94a1b2;
+}
+
+.results {
+  background-color: #16161a;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0px 40px 50px 40px;
+}
+
+.result-titles {
+  color: #fffffe;
+  font-size: 26px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  width: 100%;
+  text-align: center;
+  justify-self: center;
+  align-self: end;
+}
+
+.album {
+  display: grid;
+  grid-template-rows: 165px 40px 45px;
+  margin: 50px;
+}
+
+.album img {
+  width: 230px;
+  height: 230px;
+  grid-row: 1/4;
+  grid-column: 1;
+}
+
+.album-name, .artist-name {
+  margin-bottom: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: #fffffe;
+  max-width: 230px;
+}
+
+.album-name {
+  font-size: 18px;
+  padding-top: 10px;
+  grid-column: 1;
+  grid-row: 2/3;
+  overflow: hidden;
+}
+
+.artist-name {
+  color: #72757e;
+  font-size: 14px;
+  grid-column: 1;
+  grid-row: 3/4;
+  overflow: hidden;
+}
+
+.not-found {
+  margin-bottom: 0px;
+  grid-column: 1/5;
+  justify-self: center;
+  align-self: end;
+  color: #72757e;
+}
+
+@media screen and (min-width: 1640px) {
+  .form-search {
+    margin-top: 65px;
+  }
+
+  .search-input {
+    height: 45px;
+    max-width: 530px;
+  }
+  
+  .form-search .search-button {
+    height: 45px;
+    width: 190px;
+  }
+  
+  .result-titles {
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 32px;
+  }
+
+  .results {
+    padding: 0px 60px 70px 60px;
+  }
+
+  .album {
+    margin: 80px;
+    grid-template-rows: 240px 55px 65px;
+  }
+
+  .album-name, .artist-name {
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: 320px;
+  }
+
+  .album-name {
+    padding-top: 16px;
+    font-size: 24px;
+  }
+
+  .artist-name {
+    padding-bottom: 0px;
+    padding-top: 5px;
+    font-size: 20px;
+  }
+  .album img {
+    width: 320px;
+    height: 320px;
+  }
+}

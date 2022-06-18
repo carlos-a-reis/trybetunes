@@ -2,7 +2,7 @@ import propTypes from 'prop-types';
 import React from 'react';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
-class MusicCard extends React.Component {
+class MusicCardFavorite extends React.Component {
   constructor() {
     super();
 
@@ -45,11 +45,11 @@ class MusicCard extends React.Component {
   }
 
   render() {
-    const { trackName, trackId, previewUrl } = this.props;
+    const { trackName, trackId, previewUrl, songInfo } = this.props;
     const { isFavorite } = this.state;
-
     return (
-      <div className="music-player">
+      <div className="music-player-favorite">
+        <img src={ songInfo.artworkUrl100 } alt={ `capa da musica ${trackName}` } />
         <p>{ trackName }</p>
         { previewUrl !== undefined && (
           <audio data-testid="audio-component" src={ previewUrl } controls>
@@ -74,13 +74,14 @@ class MusicCard extends React.Component {
   }
 }
 
-MusicCard.propTypes = {
+MusicCardFavorite.propTypes = {
   songInfo: propTypes.shape.isRequired,
   trackName: propTypes.string.isRequired,
   previewUrl: propTypes.string.isRequired,
   trackId: propTypes.number.isRequired,
   favorites: propTypes.arrayOf.isRequired,
   removeFavorite: propTypes.func.isRequired,
+  artworkUrl100: propTypes.string.isRequired,
 };
 
-export default MusicCard;
+export default MusicCardFavorite;

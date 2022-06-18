@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from './Loading';
 import { getUser } from '../services/userAPI';
+import editIcont from '../images/edit_icon.png';
+import '../CSS/profile.css';
 
 class Profile extends React.Component {
   constructor() {
@@ -42,17 +44,29 @@ class Profile extends React.Component {
   userRender() {
     const { userName, userEmail, userImage, userDescription } = this.state;
     return (
-      <div>
-        <img src={ userImage } alt={ userName } data-testid="profile-image" />
-        <Link to="/profile/edit">
-          <button type="button">Editar perfil</button>
-        </Link>
-        <h3>Nome</h3>
-        <p>{ userName }</p>
-        <h3>Email</h3>
-        <p>{ userEmail }</p>
-        <h3>Descrição</h3>
-        <p>{ userDescription }</p>
+      <div className="profile">
+        <div className="div-profile-picture">
+          <img
+            src={ userImage }
+            alt={ userName }
+            className="profile-picture"
+            data-testid="profile-image"
+          />
+          <Link to="/profile/edit">
+            <i>
+              <img src={ editIcont } className="edit-icon" alt="editar" />
+              <p>Editar perfil</p>
+            </i>
+          </Link>
+        </div>
+        <div className="profile-infos">
+          <h4>Nome</h4>
+          <p>{ userName }</p>
+          <h4>Email</h4>
+          <p>{ userEmail }</p>
+          <h4>Descrição</h4>
+          <p>{ userDescription }</p>
+        </div>
       </div>
     );
   }
@@ -61,7 +75,7 @@ class Profile extends React.Component {
     const { loading } = this.state;
 
     return (
-      <div data-testid="page-profile">
+      <div className="profile-page" data-testid="page-profile">
         <Header />
         { loading ? <Loading /> : this.userRender() }
       </div>

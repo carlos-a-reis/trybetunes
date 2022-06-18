@@ -2,6 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
+import logo from '../images/logo.png';
+import '../CSS/login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -56,28 +58,35 @@ class Login extends React.Component {
     const { userName, enableButton, loading, redirect } = this.state;
 
     return (
-      <div data-testid="page-login">
-        <form>
-          <label htmlFor="userName">
-            UserName
-            <input
-              type="text"
-              id="usernName"
-              onChange={ this.inputName }
-              value={ userName }
-              data-testid="login-name-input"
+      <div className="login" data-testid="page-login">
+        { loading ? <Loading /> : (
+          <div className="login">
+            <img
+              src={ logo }
+              alt="Logo do Trybe Tunes"
+              className="logo-login"
             />
-          </label>
-          <button
-            type="submit"
-            data-testid="login-submit-button"
-            disabled={ enableButton }
-            onClick={ this.login }
-          >
-            Entrar
-          </button>
-        </form>
-        { loading && <Loading /> }
+            <form>
+              <input
+                type="text"
+                placeholder="Nome de Usuário"
+                onChange={ this.inputName }
+                value={ userName }
+                className="input-group-text input-user-name"
+                data-testid="login-name-input"
+              />
+              <button
+                type="submit"
+                data-testid="login-submit-button"
+                disabled={ enableButton }
+                onClick={ this.login }
+                className="btn btn-primary"
+              >
+                Entrar
+              </button>
+            </form>
+          </div>
+        ) }
         { redirect && <Redirect to="/search" /> }
       </div>
     );

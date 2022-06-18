@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import Loading from './Loading';
 import Header from '../components/Header';
 import { getUser, updateUser } from '../services/userAPI';
+import '../CSS/profileEdit.css';
 
 class ProfileEdit extends React.Component {
   constructor() {
@@ -68,10 +69,24 @@ class ProfileEdit extends React.Component {
 
   formEdit() {
     const { userName, userEmail, userImage, userDescription, disableButton } = this.state;
-
+    const profilePicture = JSON.parse(localStorage.getItem('user')).image;
     return (
-      <form>
-        <label htmlFor="userName">
+      <form className="form-edit">
+        <label className="edit-picture" htmlFor="userImage">
+          <img
+            src={ profilePicture }
+            alt="foto de pertil"
+            className="profile-picture-edit"
+          />
+          <input
+            type="text"
+            id="userImage"
+            onChange={ this.handleEdit }
+            value={ userImage }
+            data-testid="edit-input-image"
+          />
+        </label>
+        <label className="edit-info" htmlFor="userName">
           <h4>Nome</h4>
           <input
             type="text"
@@ -81,7 +96,7 @@ class ProfileEdit extends React.Component {
             data-testid="edit-input-name"
           />
         </label>
-        <label htmlFor="userEmail">
+        <label className="edit-info" htmlFor="userEmail">
           <h4>Email</h4>
           <input
             type="text"
@@ -91,7 +106,7 @@ class ProfileEdit extends React.Component {
             data-testid="edit-input-email"
           />
         </label>
-        <label htmlFor="userDescription">
+        <label className="edit-info" htmlFor="userDescription">
           <h4>Descrição</h4>
           <textarea
             id="userDescription"
@@ -100,24 +115,14 @@ class ProfileEdit extends React.Component {
             data-testid="edit-input-description"
           />
         </label>
-        <label htmlFor="userImage">
-          <h4>Imagem</h4>
-          <input
-            type="text"
-            id="userImage"
-            onChange={ this.handleEdit }
-            value={ userImage }
-            data-testid="edit-input-image"
-          />
-          <button
-            type="button"
-            disabled={ disableButton }
-            onClick={ this.saveEdit }
-            data-testid="edit-button-save"
-          >
-            Editar perfil
-          </button>
-        </label>
+        <button
+          type="button"
+          disabled={ disableButton }
+          onClick={ this.saveEdit }
+          data-testid="edit-button-save"
+        >
+          Editar perfil
+        </button>
       </form>
     );
   }
@@ -147,7 +152,7 @@ class ProfileEdit extends React.Component {
     const { loading, loadingSave } = this.state;
 
     return (
-      <div data-testid="page-profile-edit">
+      <div className="profile-edit-page" data-testid="page-profile-edit">
         <Header />
         { loading ? <Loading /> : this.formEdit() }
         { loadingSave && <Loading /> }
