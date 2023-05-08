@@ -63,7 +63,7 @@ class Header extends React.Component {
             </div>
             <nav className="header-bottom">
               <Link
-                to="/search"
+                to="/"
                 className="search-link nav-link"
                 data-testid="link-to-search"
               >
