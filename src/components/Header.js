@@ -4,7 +4,6 @@ import Loading from '../pages/Loading';
 import { getUser } from '../services/userAPI';
 import logo from '../images/logo.png';
 import avatar from '../images/avatar.png';
-import rectangle from '../images/rectangle.png';
 import '../CSS/header.css';
 
 class Header extends React.Component {
@@ -14,7 +13,7 @@ class Header extends React.Component {
     this.userRequest = this.userRequest.bind(this);
 
     this.state = ({
-      userName: '',
+      userImage: '',
       loading: false,
     });
   }
@@ -29,14 +28,14 @@ class Header extends React.Component {
     }, async () => {
       const user = await getUser();
       this.setState({
-        userName: user.name,
+        userImage: user.image,
         loading: false,
       });
     });
   }
 
   render() {
-    const { userName, loading } = this.state;
+    const { userImage, loading } = this.state;
     return (
       <header data-testid="header-component">
         { loading ? <Loading /> : (
@@ -47,19 +46,11 @@ class Header extends React.Component {
                 alt="Logo do Trybe Tunes"
                 className="logo-header"
               />
-              <div className="user">
-                <p data-testid="header-user-name">{ userName }</p>
-                <img
-                  src={ avatar }
-                  alt="Avatar default"
-                  className="avatar"
-                />
-                <img
-                  src={ rectangle }
-                  alt="Avatar default"
-                  className="rectangle"
-                />
-              </div>
+              <img
+                src={ userImage !== undefined ? userImage : avatar }
+                alt="Avatar default"
+                className="avatar"
+              />
             </div>
             <nav className="header-bottom">
               <Link
