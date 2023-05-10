@@ -1,6 +1,8 @@
 import propTypes from 'prop-types';
 import React from 'react';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import heartEmpty from '../images/heart-empty.svg';
+import heartFilled from '../images/heart-filled.svg';
 
 class MusicCard extends React.Component {
   constructor() {
@@ -26,26 +28,23 @@ class MusicCard extends React.Component {
     });
   }
 
-  async addAndRemoveFavorite({ target }) {
-    const { songInfo, removeFavorite } = this.props;
+  async addAndRemoveFavorite() {
+    const { songInfo } = this.props;
+    const { isFavorite } = this.state;
 
-    if (removeFavorite) {
-      removeFavorite(songInfo);
+    this.setState((prevState) => ({
+      isFavorite: !prevState.isFavorite,
+    }));
+
+    if (isFavorite) {
+      await removeSong(songInfo);
     } else {
-      this.setState((prevState) => ({
-        isFavorite: !prevState.isFavorite,
-      }));
-
-      if (target.checked) {
-        await addSong(songInfo);
-      } else {
-        await removeSong(songInfo);
-      }
+      await addSong(songInfo);
     }
   }
 
   render() {
-    const { trackName, trackId, previewUrl } = this.props;
+    const { trackName, previewUrl } = this.props;
     const { isFavorite } = this.state;
 
     return (
@@ -58,17 +57,18 @@ class MusicCard extends React.Component {
             <code>audio</code>
           </audio>
         ) }
-        <label htmlFor={ `favorite-song${trackId}` }>
-          Favorita
-          <input
-            type="checkbox"
-            id={ `favorite-song${trackId}` }
-            className="form-check-input"
-            checked={ isFavorite }
-            onChange={ this.addAndRemoveFavorite }
-            data-testid={ `checkbox-music-${trackId}` }
+        <button
+          type="button"
+          className="favorite-button"
+          onClick={ () => {
+            this.addAndRemoveFavorite();
+          } }
+        >
+          <img
+            src={ isFavorite ? heartFilled : heartEmpty }
+            alt="botão em formato de coração para favoritar a musica"
           />
-        </label>
+        </button>
       </div>
     );
   }
@@ -80,7 +80,6 @@ MusicCard.propTypes = {
   previewUrl: propTypes.string.isRequired,
   trackId: propTypes.number.isRequired,
   favorites: propTypes.arrayOf.isRequired,
-  removeFavorite: propTypes.func.isRequired,
 };
 
 export default MusicCard;
