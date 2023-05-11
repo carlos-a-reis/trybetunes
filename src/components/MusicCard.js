@@ -48,11 +48,14 @@ class MusicCard extends React.Component {
   }
 
   render() {
-    const { trackName, previewUrl, cardType } = this.props;
+    const { songInfo, trackName, previewUrl, cardType } = this.props;
     const { isFavorite } = this.state;
 
     return (
       <div className={ `music-player-${cardType}` }>
+        { cardType === 'fav' && (
+          <img src={ songInfo.artworkUrl100 } alt={ `capa da musica ${trackName}` } />
+        ) }
         <p>{ trackName }</p>
         { previewUrl !== undefined && (
           <audio data-testid="audio-component" src={ previewUrl } controls>
