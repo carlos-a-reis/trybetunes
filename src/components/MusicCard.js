@@ -29,26 +29,30 @@ class MusicCard extends React.Component {
   }
 
   async addAndRemoveFavorite() {
-    const { songInfo } = this.props;
+    const { songInfo, cardType, removeFavorite } = this.props;
     const { isFavorite } = this.state;
 
-    this.setState((prevState) => ({
-      isFavorite: !prevState.isFavorite,
-    }));
-
-    if (isFavorite) {
-      await removeSong(songInfo);
+    if (cardType === 'fav') {
+      removeFavorite(songInfo);
     } else {
-      await addSong(songInfo);
+      this.setState((prevState) => ({
+        isFavorite: !prevState.isFavorite,
+      }));
+
+      if (isFavorite) {
+        await removeSong(songInfo);
+      } else {
+        await addSong(songInfo);
+      }
     }
   }
 
   render() {
-    const { trackName, previewUrl } = this.props;
+    const { trackName, previewUrl, cardType } = this.props;
     const { isFavorite } = this.state;
 
     return (
-      <div className="music-player">
+      <div className={ `music-player-${cardType}` }>
         <p>{ trackName }</p>
         { previewUrl !== undefined && (
           <audio data-testid="audio-component" src={ previewUrl } controls>
@@ -59,7 +63,7 @@ class MusicCard extends React.Component {
         ) }
         <button
           type="button"
-          className="favorite-button"
+          className={ `like-button-${cardType}` }
           onClick={ () => {
             this.addAndRemoveFavorite();
           } }
@@ -80,6 +84,8 @@ MusicCard.propTypes = {
   previewUrl: propTypes.string.isRequired,
   trackId: propTypes.number.isRequired,
   favorites: propTypes.arrayOf.isRequired,
+  cardType: propTypes.string.isRequired,
+  removeFavorite: propTypes.func.isRequired,
 };
 
 export default MusicCard;
