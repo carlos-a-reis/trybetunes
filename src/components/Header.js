@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../pages/Loading';
 import { getUser } from '../services/userAPI';
 import logo from '../images/logo.png';
-import avatar from '../images/avatar.png';
+import avatar from '../images/avatar.svg';
 import '../CSS/header.css';
 
 class Header extends React.Component {
