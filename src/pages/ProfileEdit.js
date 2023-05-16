@@ -66,6 +66,7 @@ class ProfileEdit extends React.Component {
           userDescription: user.description,
           loading: false,
         });
+        this.checkInputs();
       } else {
         this.setState({
           loading: false,
