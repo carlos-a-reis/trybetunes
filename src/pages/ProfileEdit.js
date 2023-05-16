@@ -57,24 +57,31 @@ class ProfileEdit extends React.Component {
       loading: true,
     }, async () => {
       const user = await getUser();
-      this.setState({
-        userName: user.name,
-        userEmail: user.email,
-        userImage: user.image,
-        userDescription: user.description,
-        loading: false,
-      });
+
+      if (Object.entries(user).length !== 0) {
+        this.setState({
+          userName: user.name,
+          userEmail: user.email,
+          userImage: user.image,
+          userDescription: user.description,
+          loading: false,
+        });
+      } else {
+        this.setState({
+          loading: false,
+        });
+      }
     });
   }
 
   formEdit() {
     const { userName, userEmail, userImage, userDescription, disableButton } = this.state;
-    const profilePicture = JSON.parse(localStorage.getItem('user')).image;
+
     return (
       <form className="form-edit">
         <label className="edit-picture" htmlFor="userImage">
           <img
-            src={ profilePicture }
+            src={ userImage }
             alt="foto de pertil"
             className="profile-picture-edit"
           />
@@ -129,14 +136,12 @@ class ProfileEdit extends React.Component {
 
   checkInputs() {
     const { userName, userEmail, userImage, userDescription } = this.state;
-    const minLength = 7;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const errors = [
       userName.length !== 0,
       userEmail.length !== 0,
-      userEmail.length > minLength,
-      userEmail.includes('@'),
-      userEmail.includes('.com'),
+      emailRegex.test(userEmail),
       userImage.length !== 0,
       userDescription.length !== 0,
     ];
