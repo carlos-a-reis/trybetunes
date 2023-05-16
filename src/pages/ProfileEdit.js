@@ -95,22 +95,24 @@ class ProfileEdit extends React.Component {
           />
         </label>
         <label className="edit-info" htmlFor="userName">
-          <h4>Nome</h4>
+          <h4>Nome de Usuário</h4>
           <input
             type="text"
             id="userName"
             onChange={ this.handleEdit }
             value={ userName }
+            maxLength={ 30 }
             data-testid="edit-input-name"
           />
         </label>
         <label className="edit-info" htmlFor="userEmail">
-          <h4>Email</h4>
+          <h4>E-mail</h4>
           <input
             type="text"
             id="userEmail"
             onChange={ this.handleEdit }
             value={ userEmail }
+            maxLength={ 35 }
             data-testid="edit-input-email"
           />
         </label>
@@ -120,6 +122,7 @@ class ProfileEdit extends React.Component {
             id="userDescription"
             onChange={ this.handleEdit }
             value={ userDescription }
+            maxLength={ 140 }
             data-testid="edit-input-description"
           />
         </label>
@@ -129,7 +132,7 @@ class ProfileEdit extends React.Component {
           onClick={ this.saveEdit }
           data-testid="edit-button-save"
         >
-          Editar perfil
+          Salvar
         </button>
       </form>
     );

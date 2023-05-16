@@ -62,9 +62,9 @@ class Profile extends React.Component {
           </Link>
         </div>
         <div className="profile-infos">
-          <h4>Nome</h4>
+          <h4>Nome de Usuário</h4>
           <p>{ userName }</p>
-          <h4>Email</h4>
+          <h4>E-mail</h4>
           <p>{ userEmail }</p>
           <h4>Descrição</h4>
           <p>{ userDescription }</p>
