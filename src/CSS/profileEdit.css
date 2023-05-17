@@ -26,6 +26,7 @@
   width: 140px;
   margin-bottom: 20px;
   object-fit: cover;
+  background-color: #117b7d;
 }
 
 .edit-picture input {
@@ -73,6 +74,15 @@
 .form-edit button:hover {
   transform: scale(1.1);
   background-color: #0E6263;
+}
+
+.form-edit button:disabled {
+  opacity: 65%;
+}
+
+.form-edit button:disabled:hover {
+  transform: scale(1);
+  background-color: #117b7d;
 }
 
 @media screen and (min-width: 1024px) {
