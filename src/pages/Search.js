@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from './Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import search from '../images/search-icon.svg';
 import '../CSS/search.css';
 
 class Search extends React.Component {
@@ -89,25 +90,23 @@ class Search extends React.Component {
         <Header />
         <div className="search">
           <form className="form-search">
-            <div className="input-group">
-              <input
-                type="text"
-                onChange={ this.handleChange }
-                value={ inputValue }
-                className="search-input"
-                placeholder="Nome do Artista"
-                data-testid="search-artist-input"
-              />
-              <button
-                type="submit"
-                disabled={ buttonEnable }
-                onClick={ this.searchMusics }
-                className="search-button"
-                data-testid="search-artist-button"
-              >
-                Pesquisar
-              </button>
-            </div>
+            <input
+              type="text"
+              onChange={ this.handleChange }
+              value={ inputValue }
+              className="search-input"
+              placeholder="Nome do Artista"
+              data-testid="search-artist-input"
+            />
+            <button
+              type="submit"
+              disabled={ buttonEnable }
+              onClick={ this.searchMusics }
+              className="search-button"
+              data-testid="search-artist-button"
+            >
+              <img src={ search } alt="lupa de pesquisa" />
+            </button>
           </form>
           { loading && <Loading /> }
           { foundAlbums && (

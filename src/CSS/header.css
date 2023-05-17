@@ -38,13 +38,20 @@
 }
 
 nav .search-link,
-nav .favorites-link,
+nav .favorites-link {
+  width: 20px;
+  height: 20px;
+}
+
 nav .profile-link {
-  color: #fffffe;
-  width: 70px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18px;
+  width: 18px;
+  height: 20px;
+}
+
+nav .search-link:hover,
+nav .favorites-link:hover,
+nav .profile-link:hover {
+  transform: scale(1.1);
 }
 
 .line1,
@@ -69,9 +76,14 @@ nav .profile-link {
   }
 
   nav .search-link,
-  nav .favorites-link,
+  nav .favorites-link {
+    width: 30px;
+    height: 30px;
+  }
+
   nav .profile-link {
-    font-size: 20px;
+    width: 26px;
+    height: 30px;
   }
 }
 
