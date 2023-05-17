@@ -44,7 +44,7 @@ class Profile extends React.Component {
 
   userRender() {
     const { userName, userEmail, userImage, userDescription } = this.state;
-    console.log(userImage);
+
     return (
       <div className="profile">
         <div className="div-profile-picture">
