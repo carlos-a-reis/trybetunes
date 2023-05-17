@@ -1,0 +1,40 @@
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #16161a;
+  color: #72757e;
+}
+
+.not-found-page img {
+  height: 200px;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.not-found-page p {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 0px;
+}
+
+@media screen and (min-width: 1024px) {
+  .not-found-page {
+    flex-direction: row;
+  }
+  
+  .not-found-page img {
+    height: 300px;
+    width: 300px;
+    margin-bottom: 0px;
+    margin-right: 30px;
+  }
+  
+  .not-found-page p {
+    text-align: start;
+    font-size: 60px;
+  }
+}
