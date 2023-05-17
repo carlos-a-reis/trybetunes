@@ -30,10 +30,13 @@ class Header extends React.Component {
       loading: true,
     }, async () => {
       const user = await getUser();
-      this.setState({
-        userImage: user.image,
-        loading: false,
-      });
+      const TIME = 500;
+      setTimeout(() => {
+        this.setState({
+          userImage: user.image,
+          loading: false,
+        });
+      }, TIME);
     });
   }
 

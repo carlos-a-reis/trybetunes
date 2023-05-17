@@ -51,12 +51,16 @@ class Search extends React.Component {
       artist: inputValue,
     }, async () => {
       const albums = await searchAlbumsAPI(inputValue.replace(/\s+/g, '+'));
-      this.setState({
-        loading: false,
-        albums,
-        foundAlbums: true,
-        inputValue: '',
-      });
+      const TIME = 200;
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+          albums,
+          foundAlbums: true,
+          inputValue: '',
+          buttonEnable: true,
+        });
+      }, TIME);
     });
   }
 
