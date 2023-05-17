@@ -52,11 +52,16 @@ class Header extends React.Component {
                 alt="Logo do Trybe Tunes"
                 className="logo-header"
               />
-              <img
-                src={ userImage !== undefined ? userImage : avatar }
-                alt="Avatar default"
-                className="avatar"
-              />
+              <Link
+                to="/profile"
+                className="profile-link"
+              >
+                <img
+                  src={ userImage !== undefined ? userImage : avatar }
+                  alt="Avatar"
+                  className="avatar"
+                />
+              </Link>
             </div>
             <nav className="header-bottom">
               <Link
