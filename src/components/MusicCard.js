@@ -82,13 +82,23 @@ class MusicCard extends React.Component {
 }
 
 MusicCard.propTypes = {
-  songInfo: propTypes.shape.isRequired,
+  songInfo: propTypes.shape({
+    trackId: propTypes.number.isRequired,
+    artworkUrl100: propTypes.string.isRequired,
+  }).isRequired,
   trackName: propTypes.string.isRequired,
   previewUrl: propTypes.string.isRequired,
-  trackId: propTypes.number.isRequired,
-  favorites: propTypes.arrayOf.isRequired,
+  favorites: propTypes.arrayOf(
+    propTypes.shape({
+      trackId: propTypes.number.isRequired,
+    }),
+  ).isRequired,
   cardType: propTypes.string.isRequired,
-  removeFavorite: propTypes.func.isRequired,
+  removeFavorite: propTypes.func,
+};
+
+MusicCard.defaultProps = {
+  removeFavorite: () => {},
 };
 
 export default MusicCard;

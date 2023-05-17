@@ -167,8 +167,9 @@ class ProfileEdit extends React.Component {
 }
 
 ProfileEdit.propTypes = {
-  history: propTypes.shape.isRequired,
-  push: propTypes.func.isRequired,
+  history: propTypes.shape({
+    push: propTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default ProfileEdit;
