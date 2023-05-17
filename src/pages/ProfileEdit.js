@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import Loading from './Loading';
 import Header from '../components/Header';
 import { getUser, updateUser } from '../services/userAPI';
+import avatar from '../images/avatar.svg';
 import '../CSS/profileEdit.css';
 
 class ProfileEdit extends React.Component {
@@ -82,7 +83,7 @@ class ProfileEdit extends React.Component {
       <form className="form-edit">
         <label className="edit-picture" htmlFor="userImage">
           <img
-            src={ userImage }
+            src={ userImage !== '' ? userImage : avatar }
             alt="foto de pertil"
             className="profile-picture-edit"
           />
