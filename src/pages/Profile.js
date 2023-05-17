@@ -52,7 +52,6 @@ class Profile extends React.Component {
             src={ userImage !== undefined ? userImage : avatar }
             alt={ userName }
             className="profile-picture"
-            data-testid="profile-image"
           />
           <Link to="/profile/edit">
             <i>
@@ -77,7 +76,7 @@ class Profile extends React.Component {
     const { loading } = this.state;
 
     return (
-      <div className="profile-page" data-testid="page-profile">
+      <div className="profile-page">
         <Header />
         { loading ? <Loading /> : this.userRender() }
       </div>

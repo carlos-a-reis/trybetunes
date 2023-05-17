@@ -91,7 +91,6 @@ class ProfileEdit extends React.Component {
             id="userImage"
             onChange={ this.handleEdit }
             value={ userImage }
-            data-testid="edit-input-image"
           />
         </label>
         <label className="edit-info" htmlFor="userName">
@@ -102,7 +101,6 @@ class ProfileEdit extends React.Component {
             onChange={ this.handleEdit }
             value={ userName }
             maxLength={ 30 }
-            data-testid="edit-input-name"
           />
         </label>
         <label className="edit-info" htmlFor="userEmail">
@@ -113,7 +111,6 @@ class ProfileEdit extends React.Component {
             onChange={ this.handleEdit }
             value={ userEmail }
             maxLength={ 35 }
-            data-testid="edit-input-email"
           />
         </label>
         <label className="edit-info" htmlFor="userDescription">
@@ -123,14 +120,12 @@ class ProfileEdit extends React.Component {
             onChange={ this.handleEdit }
             value={ userDescription }
             maxLength={ 140 }
-            data-testid="edit-input-description"
           />
         </label>
         <button
           type="button"
           disabled={ disableButton }
           onClick={ this.saveEdit }
-          data-testid="edit-button-save"
         >
           Salvar
         </button>
@@ -161,7 +156,7 @@ class ProfileEdit extends React.Component {
     const { loading, loadingSave } = this.state;
 
     return (
-      <div className="profile-edit-page" data-testid="page-profile-edit">
+      <div className="profile-edit-page">
         <Header />
         { loading ? <Loading /> : this.formEdit() }
         { loadingSave && <Loading /> }

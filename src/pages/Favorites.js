@@ -74,7 +74,7 @@ class Favorites extends React.Component {
     const { loading } = this.state;
 
     return (
-      <div className="favorites-page" data-testid="page-favorites">
+      <div className="favorites-page">
         <Header />
         { loading ? <Loading /> : (
           <div className="favorites">

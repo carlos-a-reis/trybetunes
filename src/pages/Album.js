@@ -60,14 +60,14 @@ class Album extends React.Component {
     const { album, loading } = this.state;
 
     return (
-      <div className="div-album" data-testid="page-album">
+      <div className="div-album">
         <Header />
         { loading ? <Loading /> : (
           <div className="music-list-album">
             <div className="album-info">
               <img src={ album[0].artworkUrl100 } alt={ album[0].collectionName } />
-              <h2 data-testid="artist-name">{ album[0].artistName }</h2>
-              <p data-testid="album-name">{ album[0].collectionName }</p>
+              <h2>{ album[0].artistName }</h2>
+              <p>{ album[0].collectionName }</p>
             </div>
             <div className="album-list">{ this.musics(album) }</div>
           </div>

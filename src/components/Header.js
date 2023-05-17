@@ -43,7 +43,7 @@ class Header extends React.Component {
   render() {
     const { userImage, loading } = this.state;
     return (
-      <header data-testid="header-component">
+      <header>
         { loading ? <Loading /> : (
           <div className="header">
             <div className="header-top">
@@ -62,7 +62,6 @@ class Header extends React.Component {
               <Link
                 to="/"
                 className="search-link"
-                data-testid="link-to-search"
               >
                 <img src={ search } alt="lupa de pesquisa" />
               </Link>
@@ -70,7 +69,6 @@ class Header extends React.Component {
               <Link
                 to="/favorites"
                 className="favorites-link"
-                data-testid="link-to-favorites"
               >
                 <img src={ heart } alt="coração de favoritos" />
               </Link>
@@ -78,7 +76,6 @@ class Header extends React.Component {
               <Link
                 to="/profile"
                 className="profile-link"
-                data-testid="link-to-profile"
               >
                 <img src={ userIcon } alt="avatar de perfil" />
               </Link>

@@ -74,7 +74,6 @@ class Search extends React.Component {
         to={ `/album/${album.collectionId}` }
         key={ index }
         className="nav-link"
-        data-testid={ `link-to-album-${album.collectionId}` }
       >
         <div className="album">
           <img src={ album.artworkUrl100 } alt={ album.collectonName } />
@@ -90,7 +89,7 @@ class Search extends React.Component {
     const { inputValue, artist, buttonEnable, loading, foundAlbums, albums } = this.state;
 
     return (
-      <div className="page" data-testid="page-search">
+      <div className="page">
         <Header />
         <div className="search">
           <form className="form-search">
@@ -100,14 +99,12 @@ class Search extends React.Component {
               value={ inputValue }
               className="search-input"
               placeholder="Nome do Artista"
-              data-testid="search-artist-input"
             />
             <button
               type="submit"
               disabled={ buttonEnable }
               onClick={ this.searchMusics }
               className="search-button"
-              data-testid="search-artist-button"
             >
               <img src={ search } alt="lupa de pesquisa" />
             </button>
