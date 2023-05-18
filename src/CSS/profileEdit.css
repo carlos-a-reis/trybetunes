@@ -1,61 +1,125 @@
 .profile-edit-page {
   height: 100%;
-  background-color: #16161A;
-  display: flex;
-  flex-direction: column;
+  background-color: #16161a;
 }
 
 .form-edit {
-  height: min-content;
-  width: 450px;
   display: flex;
-  align-self: center;
   flex-direction: column;
-  align-items: start;
-  padding-top: 35px;
-  background-color: #16161A;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 45px;
   color: #fffffe;
+  background-color: #16161a;
 }
 
 .edit-picture {
-  width: 450px;
   display: flex;
-  align-items: flex-end;
-  justify-content: start;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 35px;
 }
 
 .profile-picture-edit {
-  border-radius: 100%;
-  min-height: 140px;
+  border-radius: 50%;
+  height: 140px;
   width: 140px;
-  margin-right: 22px;
+  margin-bottom: 20px;
   object-fit: cover;
+  background-color: #117b7d;
 }
 
 .edit-picture input {
+  width: 300px;
   height: 40px;
-  width: 100%;
-  margin-bottom: 5px;
 }
 
 .form-edit h4 {
   font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .edit-info input {
-  width: 450px;
+  width: 300px;
   height: 40px;
-  margin-top: 5px;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
 }
 
 .edit-info textarea {
-  width: 450px;
-  margin-top: 5px;
+  width: 300px;
+  height: 80px;
   margin-bottom: 25px;
 }
 
+.edit-info input,
+.edit-info textarea,
+.edit-picture input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
 .form-edit button {
-  align-self: center;
+  font-size: 18px;
+  font-weight: 700;
+  width: 90px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  color: #fffffe;
+  background-color: #117b7d;
+}
+
+.form-edit button:hover {
+  transform: scale(1.1);
+  background-color: #0E6263;
+}
+
+.form-edit button:disabled {
+  opacity: 65%;
+}
+
+.form-edit button:disabled:hover {
+  transform: scale(1);
+  background-color: #117b7d;
+}
+
+@media screen and (min-width: 1024px) {
+  .form-edit {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  
+  .edit-picture {
+    flex-direction: row;
+    column-gap: 15px;
+    align-items: end;
+  }
+  
+  .profile-picture-edit {
+    height: 180px;
+    width: 180px;
+    margin-bottom: 0px;
+  }
+  
+  .edit-picture input {
+    width: 350px;
+    margin-bottom: 15px;
+  }
+  
+  .edit-info input {
+    width: 350px;
+  }
+  
+  .edit-info textarea {
+    width: 350px;
+    height: 100px;
+  }
+  
+  .form-edit button {
+    font-size: 20px;
+    width: 100px;
+    height: 45px;
+  }
 }

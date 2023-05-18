@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from './Loading';
 import { getUser } from '../services/userAPI';
-import editIcont from '../images/edit_icon.png';
+import editIcont from '../images/edit_icon.svg';
+import avatar from '../images/avatar.svg';
 import '../CSS/profile.css';
 
 class Profile extends React.Component {
@@ -43,26 +44,26 @@ class Profile extends React.Component {
 
   userRender() {
     const { userName, userEmail, userImage, userDescription } = this.state;
+
     return (
       <div className="profile">
         <div className="div-profile-picture">
           <img
-            src={ userImage }
+            src={ userImage !== undefined ? userImage : avatar }
             alt={ userName }
             className="profile-picture"
-            data-testid="profile-image"
           />
           <Link to="/profile/edit">
             <i>
               <img src={ editIcont } className="edit-icon" alt="editar" />
-              <p>Editar perfil</p>
+              <p>Editar Perfil</p>
             </i>
           </Link>
         </div>
         <div className="profile-infos">
-          <h4>Nome</h4>
+          <h4>Nome de Usuário</h4>
           <p>{ userName }</p>
-          <h4>Email</h4>
+          <h4>E-mail</h4>
           <p>{ userEmail }</p>
           <h4>Descrição</h4>
           <p>{ userDescription }</p>
@@ -75,7 +76,7 @@ class Profile extends React.Component {
     const { loading } = this.state;
 
     return (
-      <div className="profile-page" data-testid="page-profile">
+      <div className="profile-page">
         <Header />
         { loading ? <Loading /> : this.userRender() }
       </div>

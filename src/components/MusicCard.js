@@ -1,6 +1,8 @@
 import propTypes from 'prop-types';
 import React from 'react';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import heartEmpty from '../images/heart-empty.svg';
+import heartFilled from '../images/heart-filled.svg';
 
 class MusicCard extends React.Component {
   constructor() {
@@ -26,61 +28,77 @@ class MusicCard extends React.Component {
     });
   }
 
-  async addAndRemoveFavorite({ target }) {
-    const { songInfo, removeFavorite } = this.props;
+  async addAndRemoveFavorite() {
+    const { songInfo, cardType, removeFavorite } = this.props;
+    const { isFavorite } = this.state;
 
-    if (removeFavorite) {
+    if (cardType === 'fav') {
       removeFavorite(songInfo);
     } else {
       this.setState((prevState) => ({
         isFavorite: !prevState.isFavorite,
       }));
 
-      if (target.checked) {
-        await addSong(songInfo);
-      } else {
+      if (isFavorite) {
         await removeSong(songInfo);
+      } else {
+        await addSong(songInfo);
       }
     }
   }
 
   render() {
-    const { trackName, trackId, previewUrl } = this.props;
+    const { songInfo, trackName, previewUrl, cardType } = this.props;
     const { isFavorite } = this.state;
 
     return (
-      <div className="music-player">
+      <div className={ `music-player-${cardType}` }>
+        { cardType === 'fav' && (
+          <img src={ songInfo.artworkUrl100 } alt={ `capa da musica ${trackName}` } />
+        ) }
         <p>{ trackName }</p>
         { previewUrl !== undefined && (
-          <audio data-testid="audio-component" src={ previewUrl } controls>
+          <audio src={ previewUrl } controls>
             <track kind="captions" />
             O seu navegador não suporta o elemento
             <code>audio</code>
           </audio>
         ) }
-        <label htmlFor={ `favorite-song${trackId}` }>
-          Favorita
-          <input
-            type="checkbox"
-            id={ `favorite-song${trackId}` }
-            className="form-check-input"
-            checked={ isFavorite }
-            onChange={ this.addAndRemoveFavorite }
-            data-testid={ `checkbox-music-${trackId}` }
+        <button
+          type="button"
+          className={ `like-button-${cardType}` }
+          onClick={ () => {
+            this.addAndRemoveFavorite();
+          } }
+        >
+          <img
+            src={ isFavorite ? heartFilled : heartEmpty }
+            alt="botão em formato de coração para favoritar a musica"
           />
-        </label>
+        </button>
       </div>
     );
   }
 }
 
 MusicCard.propTypes = {
-  songInfo: propTypes.shape.isRequired,
+  songInfo: propTypes.shape({
+    trackId: propTypes.number.isRequired,
+    artworkUrl100: propTypes.string.isRequired,
+  }).isRequired,
   trackName: propTypes.string.isRequired,
   previewUrl: propTypes.string.isRequired,
-  trackId: propTypes.number.isRequired,
-  favorites: propTypes.arrayOf.isRequired,
-  removeFavorite: propTypes.func.isRequired,
+  favorites: propTypes.arrayOf(
+    propTypes.shape({
+      trackId: propTypes.number.isRequired,
+    }),
+  ).isRequired,
+  cardType: propTypes.string.isRequired,
+  removeFavorite: propTypes.func,
+};
+
+MusicCard.defaultProps = {
+  removeFavorite: () => {},
 };
 
 export default MusicCard;

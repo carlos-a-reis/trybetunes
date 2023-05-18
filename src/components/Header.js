@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import Loading from '../pages/Loading';
 import { getUser } from '../services/userAPI';
 import logo from '../images/logo.png';
-import avatar from '../images/avatar.png';
-import rectangle from '../images/rectangle.png';
+import avatar from '../images/avatar.svg';
+import heart from '../images/heart-empty.svg';
+import search from '../images/search-icon.svg';
+import userIcon from '../images/user.svg';
 import '../CSS/header.css';
 
 class Header extends React.Component {
@@ -14,7 +16,7 @@ class Header extends React.Component {
     this.userRequest = this.userRequest.bind(this);
 
     this.state = ({
-      userName: '',
+      userImage: '',
       loading: false,
     });
   }
@@ -28,17 +30,20 @@ class Header extends React.Component {
       loading: true,
     }, async () => {
       const user = await getUser();
-      this.setState({
-        userName: user.name,
-        loading: false,
-      });
+      const TIME = 500;
+      setTimeout(() => {
+        this.setState({
+          userImage: user.image,
+          loading: false,
+        });
+      }, TIME);
     });
   }
 
   render() {
-    const { userName, loading } = this.state;
+    const { userImage, loading } = this.state;
     return (
-      <header data-testid="header-component">
+      <header>
         { loading ? <Loading /> : (
           <div className="header">
             <div className="header-top">
@@ -47,43 +52,37 @@ class Header extends React.Component {
                 alt="Logo do Trybe Tunes"
                 className="logo-header"
               />
-              <div className="user">
-                <p data-testid="header-user-name">{ userName }</p>
+              <Link
+                to="/profile"
+                className="profile-link"
+              >
                 <img
-                  src={ avatar }
-                  alt="Avatar default"
+                  src={ userImage !== undefined ? userImage : avatar }
+                  alt="Avatar"
                   className="avatar"
                 />
-                <img
-                  src={ rectangle }
-                  alt="Avatar default"
-                  className="rectangle"
-                />
-              </div>
+              </Link>
             </div>
             <nav className="header-bottom">
               <Link
-                to="/search"
-                className="search-link nav-link"
-                data-testid="link-to-search"
+                to="/"
+                className="search-link"
               >
-                Pesquisa
+                <img src={ search } alt="lupa de pesquisa" />
               </Link>
               <div className="line1" />
               <Link
                 to="/favorites"
-                className="favorites-link nav-link"
-                data-testid="link-to-favorites"
+                className="favorites-link"
               >
-                Favoritas
+                <img src={ heart } alt="coração de favoritos" />
               </Link>
               <div className="line2" />
               <Link
                 to="/profile"
-                className="profile-link nav-link"
-                data-testid="link-to-profile"
+                className="profile-link"
               >
-                Perfil
+                <img src={ userIcon } alt="avatar de perfil" />
               </Link>
             </nav>
           </div>

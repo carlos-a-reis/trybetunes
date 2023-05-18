@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import Loading from './Loading';
 import Header from '../components/Header';
 import { getUser, updateUser } from '../services/userAPI';
+import avatar from '../images/avatar.svg';
 import '../CSS/profileEdit.css';
 
 class ProfileEdit extends React.Component {
@@ -57,24 +58,32 @@ class ProfileEdit extends React.Component {
       loading: true,
     }, async () => {
       const user = await getUser();
-      this.setState({
-        userName: user.name,
-        userEmail: user.email,
-        userImage: user.image,
-        userDescription: user.description,
-        loading: false,
-      });
+
+      if (Object.entries(user).length !== 0) {
+        this.setState({
+          userName: user.name,
+          userEmail: user.email,
+          userImage: user.image,
+          userDescription: user.description,
+          loading: false,
+        });
+        this.checkInputs();
+      } else {
+        this.setState({
+          loading: false,
+        });
+      }
     });
   }
 
   formEdit() {
     const { userName, userEmail, userImage, userDescription, disableButton } = this.state;
-    const profilePicture = JSON.parse(localStorage.getItem('user')).image;
+
     return (
       <form className="form-edit">
         <label className="edit-picture" htmlFor="userImage">
           <img
-            src={ profilePicture }
+            src={ userImage !== '' ? userImage : avatar }
             alt="foto de pertil"
             className="profile-picture-edit"
           />
@@ -83,27 +92,26 @@ class ProfileEdit extends React.Component {
             id="userImage"
             onChange={ this.handleEdit }
             value={ userImage }
-            data-testid="edit-input-image"
           />
         </label>
         <label className="edit-info" htmlFor="userName">
-          <h4>Nome</h4>
+          <h4>Nome de Usuário</h4>
           <input
             type="text"
             id="userName"
             onChange={ this.handleEdit }
             value={ userName }
-            data-testid="edit-input-name"
+            maxLength={ 30 }
           />
         </label>
         <label className="edit-info" htmlFor="userEmail">
-          <h4>Email</h4>
+          <h4>E-mail</h4>
           <input
             type="text"
             id="userEmail"
             onChange={ this.handleEdit }
             value={ userEmail }
-            data-testid="edit-input-email"
+            maxLength={ 35 }
           />
         </label>
         <label className="edit-info" htmlFor="userDescription">
@@ -112,16 +120,15 @@ class ProfileEdit extends React.Component {
             id="userDescription"
             onChange={ this.handleEdit }
             value={ userDescription }
-            data-testid="edit-input-description"
+            maxLength={ 140 }
           />
         </label>
         <button
           type="button"
           disabled={ disableButton }
           onClick={ this.saveEdit }
-          data-testid="edit-button-save"
         >
-          Editar perfil
+          Salvar
         </button>
       </form>
     );
@@ -129,14 +136,12 @@ class ProfileEdit extends React.Component {
 
   checkInputs() {
     const { userName, userEmail, userImage, userDescription } = this.state;
-    const minLength = 7;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const errors = [
       userName.length !== 0,
       userEmail.length !== 0,
-      userEmail.length > minLength,
-      userEmail.includes('@'),
-      userEmail.includes('.com'),
+      emailRegex.test(userEmail),
       userImage.length !== 0,
       userDescription.length !== 0,
     ];
@@ -152,7 +157,7 @@ class ProfileEdit extends React.Component {
     const { loading, loadingSave } = this.state;
 
     return (
-      <div className="profile-edit-page" data-testid="page-profile-edit">
+      <div className="profile-edit-page">
         <Header />
         { loading ? <Loading /> : this.formEdit() }
         { loadingSave && <Loading /> }
@@ -162,8 +167,9 @@ class ProfileEdit extends React.Component {
 }
 
 ProfileEdit.propTypes = {
-  history: propTypes.shape.isRequired,
-  push: propTypes.func.isRequired,
+  history: propTypes.shape({
+    push: propTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default ProfileEdit;
