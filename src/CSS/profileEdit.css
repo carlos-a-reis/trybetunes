@@ -82,7 +82,7 @@
 
 .form-edit button:disabled:hover {
   transform: scale(1);
-  background-color: #117b7d;
+  background-color: #226263;
 }
 
 @media screen and (min-width: 1024px) {
