@@ -30,7 +30,7 @@
 }
 
 .search-button:disabled {
-  opacity: 20%;
+  background-color: #226263;
 }
 
 .search-button img {
