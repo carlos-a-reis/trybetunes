@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/trybetunes/static/css/main.1a64d9c4.chunk.css",
+    "main.css": "/trybetunes/static/css/main.8865549c.chunk.css",
     "main.js": "/trybetunes/static/js/main.f9c22cc6.chunk.js",
     "main.js.map": "/trybetunes/static/js/main.f9c22cc6.chunk.js.map",
     "runtime-main.js": "/trybetunes/static/js/runtime-main.80235779.js",
@@ -10,7 +10,7 @@
     "static/js/2.c11e6ee9.chunk.js.map": "/trybetunes/static/js/2.c11e6ee9.chunk.js.map",
     "index.html": "/trybetunes/index.html",
     "static/css/2.b1dcade9.chunk.css.map": "/trybetunes/static/css/2.b1dcade9.chunk.css.map",
-    "static/css/main.1a64d9c4.chunk.css.map": "/trybetunes/static/css/main.1a64d9c4.chunk.css.map",
+    "static/css/main.8865549c.chunk.css.map": "/trybetunes/static/css/main.8865549c.chunk.css.map",
     "static/js/2.c11e6ee9.chunk.js.LICENSE.txt": "/trybetunes/static/js/2.c11e6ee9.chunk.js.LICENSE.txt",
     "static/media/avatar.816d9d09.svg": "/trybetunes/static/media/avatar.816d9d09.svg",
     "static/media/edit_icon.8286fa36.svg": "/trybetunes/static/media/edit_icon.8286fa36.svg",
@@ -25,7 +25,7 @@
     "static/js/runtime-main.80235779.js",
     "static/css/2.b1dcade9.chunk.css",
     "static/js/2.c11e6ee9.chunk.js",
-    "static/css/main.1a64d9c4.chunk.css",
+    "static/css/main.8865549c.chunk.css",
     "static/js/main.f9c22cc6.chunk.js"
   ]
 }
