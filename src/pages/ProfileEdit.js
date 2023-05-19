@@ -50,7 +50,7 @@ class ProfileEdit extends React.Component {
       description: userDescription,
     });
 
-    push('/profile');
+    push('/trybetunes/profile');
   }
 
   async userRequest() {

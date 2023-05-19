@@ -53,7 +53,7 @@ class Profile extends React.Component {
             alt={ userName }
             className="profile-picture"
           />
-          <Link to="/profile/edit">
+          <Link to="/trybetunes/profile/edit">
             <i>
               <img src={ editIcont } className="edit-icon" alt="editar" />
               <p>Editar Perfil</p>
