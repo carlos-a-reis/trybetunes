@@ -77,7 +77,7 @@
 }
 
 .form-edit button:disabled {
-  opacity: 65%;
+  opacity: 20%;
 }
 
 .form-edit button:disabled:hover {

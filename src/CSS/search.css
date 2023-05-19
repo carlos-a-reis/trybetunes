@@ -30,7 +30,7 @@
 }
 
 .search-button:disabled {
-  opacity: 65%;
+  opacity: 20%;
 }
 
 .search-button img {
