@@ -90,6 +90,7 @@ class ProfileEdit extends React.Component {
           <input
             type="text"
             id="userImage"
+            placeholder="Insira o link da imagem"
             onChange={ this.handleEdit }
             value={ userImage }
           />
@@ -99,6 +100,7 @@ class ProfileEdit extends React.Component {
           <input
             type="text"
             id="userName"
+            placeholder="Insira o nome de usuário"
             onChange={ this.handleEdit }
             value={ userName }
             maxLength={ 30 }
@@ -109,6 +111,7 @@ class ProfileEdit extends React.Component {
           <input
             type="text"
             id="userEmail"
+            placeholder="Insira o e-mail"
             onChange={ this.handleEdit }
             value={ userEmail }
             maxLength={ 35 }
@@ -118,6 +121,7 @@ class ProfileEdit extends React.Component {
           <h4>Descrição</h4>
           <textarea
             id="userDescription"
+            placeholder="Insira a descrição"
             onChange={ this.handleEdit }
             value={ userDescription }
             maxLength={ 140 }
