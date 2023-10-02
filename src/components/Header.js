@@ -53,7 +53,7 @@ class Header extends React.Component {
                 className="logo-header"
               />
               <Link
-                to="/trybetunes/profile"
+                to="/profile"
                 className="profile-link"
               >
                 <img
@@ -65,21 +65,21 @@ class Header extends React.Component {
             </div>
             <nav className="header-bottom">
               <Link
-                to="/trybetunes/"
+                to="/"
                 className="search-link"
               >
                 <img src={ search } alt="lupa de pesquisa" />
               </Link>
               <div className="line1" />
               <Link
-                to="/trybetunes/favorites"
+                to="/favorites"
                 className="favorites-link"
               >
                 <img src={ heart } alt="coração de favoritos" />
               </Link>
               <div className="line2" />
               <Link
-                to="/trybetunes/profile"
+                to="/profile"
                 className="profile-link"
               >
                 <img src={ userIcon } alt="avatar de perfil" />
