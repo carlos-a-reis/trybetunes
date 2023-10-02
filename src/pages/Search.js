@@ -71,7 +71,7 @@ class Search extends React.Component {
 
     const renderedAlbums = albums.map((album, index) => (
       <Link
-        to={ `/trybetunes/album/${album.collectionId}` }
+        to={ `/album/${album.collectionId}` }
         key={ index }
         className="nav-link"
       >
